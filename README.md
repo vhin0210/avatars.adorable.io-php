@@ -7,7 +7,7 @@ This is a simple PHP library that will get avatars from avatars.adorable.io.
 composer require vhin0210/avatars.adorable.io-php
 ```
 
-**How to use
+**How to use**
 ```
 // Create the instance
 $avatars_adorable_io = new \AvatarsAdorableIOPHP\AvatarsAdorableIO();
