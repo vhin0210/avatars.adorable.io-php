@@ -1,0 +1,17 @@
+{
+    "name": "vhin0210/avatars.adorable.io-php",
+    "description": "PHP library to get avatars.adorable.io avatars",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mark Cristobal",
+            "email": "vhin0210@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "avatars.adorable.io-php\\": "src/"
+        }
+    }
+}
