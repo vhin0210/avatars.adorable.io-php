@@ -53,6 +53,14 @@ class AvatarsAdorableIO {
     	return FALSE;
     }
 
+    public function getRandomHexColor() {
+    	return $this->getRandomHexColorPart() . $this->getRandomHexColorPart() . $this->getRandomHexColorPart();
+	}
+
+    public function getRandomHexColorPart() {
+    	return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+	}
+
     public function getAvatarFace($eyes, $nose, $mouth, $color) {
     	if (empty($this->feature_list)) {
     		$this->feature_list = $this->getAvatarFeaturesList();
@@ -63,7 +71,7 @@ class AvatarsAdorableIO {
     		throw $isValidException;
     	}
 
-    	if (($isValidException = $this->isFeatureValid('nodes', $nose)) === TRUE) {
+    	if (($isValidException = $this->isFeatureValid('nose', $nose)) === TRUE) {
     	} else {
     		throw $isValidException;
     	}
@@ -73,16 +81,11 @@ class AvatarsAdorableIO {
     		throw $isValidException;
     	}
 
-    	if (($isValidException = $this->isFeatureValid('color', $color)) === TRUE) {
-    	} else {
-    		throw $isValidException;
-    	}
-
     	$params = [
-    		'eyes' => $eyes,
-    		'nose' => $nose,
-    		'mouth' => $mouth,
-    		'color' => $color
+    		'{eyes}' => $eyes,
+    		'{nose}' => $nose,
+    		'{mouth}' => $mouth,
+    		'{color}' => $color
     	];
 
     	$url = $this->generateURL(self::API_RESOURCE_FACE, $params);
@@ -103,8 +106,8 @@ class AvatarsAdorableIO {
     		return new \Exception('$' . $feature . ' = ' . $feature . ' is invalid feature');
     	}
 
-    	if (!isset($this->feature_list->face{$feature}->{$value})) {
-    		return new \Exception('$' . $value . ' = ' . $value . ' is invalid feature value');
+    	if (!in_array($value, $this->feature_list->face->{$feature})) {
+    		return new \Exception('$' . $feature . ' = \'' . $value . '\' is invalid feature value');
     	}
 
     	return TRUE;
