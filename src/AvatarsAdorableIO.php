@@ -96,15 +96,15 @@ class AvatarsAdorableIO {
 
     private function isFeatureValid($feature, $value) {
     	if (empty($value)) {
-    		return new \Exception('$' . $feature ' is empty');
+    		return new \Exception('$' . $feature . ' is empty');
     	}
 
     	if (!isset($this->feature_list->face->{$feature})) {
-    		return new \Exception('$' . $feature ' = ' . $feature . ' is invalid feature');
+    		return new \Exception('$' . $feature . ' = ' . $feature . ' is invalid feature');
     	}
 
     	if (!isset($this->feature_list->face{$feature}->{$value})) {
-    		return new \Exception('$' . $value ' = ' . $value . ' is invalid feature value');
+    		return new \Exception('$' . $value . ' = ' . $value . ' is invalid feature value');
     	}
 
     	return TRUE;
